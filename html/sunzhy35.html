@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    body {font-size:100%;}
+    h1 {font-size:100%;}
+    h2 {font-size:1.875em;}
+    p {font-size:0.875em;}
     .nav{
       height: 60px;
       background: #eee;
@@ -92,13 +96,50 @@
     .droplist2{
       /* 先进行相对定位 */
       position: relative;
-      left: 15%;
+      left: 100%;
       top: -40px;
       /* 加背景色 */
       background: #eee;
       box-shadow: 0px 1px 2px #666;
       /* 这里是隐藏 */
       display: none;
+    }
+    /* 弹窗 (background) */
+    .modal {
+      display: none; /* 默认隐藏 */
+      position: fixed; /* 固定定位 */
+      z-index: 1; /* 设置在顶层 */
+      left: 0;
+      top: 0;
+      width: 50%; 
+      height: 50%;
+      overflow: auto; 
+      background-color: rgb(0,0,0); 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+
+    /* 弹窗内容 */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; 
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; 
+    }
+
+    /* 关闭按钮 */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover  .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -109,12 +150,23 @@
   <!-- 现在开始我们的二级下拉菜单 -->
   <!-- 接下来时隐藏二级下拉和显示二级下拉 -->
   <div class="nav">
+    
     <ul class="ullist">
       <li class="libt2">
-        <a href="#"><strong>CONTACT ME</strong></a>
+        <h1><strong>CONTACT ME</strong></h1>
+        <!-- <a href="#"><strong>CONTACT ME</strong></a> -->
         <ul class="droplist">
           <li><a href="mailto:sunzhy35@mail2.sysu.edu.cn">Send Mail</a></li>
-          <li><a href="#">WeChat</a></li>
+          <li>
+            <button id="myBtn">email</button>
+              <!-- 弹窗 -->
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>sunzhy@mail2.sysu.edu.cn</p>
+              </div>  
+            </div>          
+          </li>        
           <li><a href="#">我是下拉1</a></li>
           <li><a href="#">我是下拉1</a></li>
           <li><a href="#">我是下拉1</a></li>
@@ -180,7 +232,9 @@
         </ul>
       </li>
     </ul>
-
   </div>
+
+
+
 </body>
 </html>
