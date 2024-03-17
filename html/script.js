@@ -1,17 +1,40 @@
-const headerBg = document.getElementById("header-bg");
-const bgImages = [
-  "images/header/image1.jpg",
-  "images/header/image2.jpg",
-  "images/header/image3.jpg",
-  "images/header/image4.jpg",
-  // 添加更多背景图片链接
-];
+window.onscroll = function () {
+  showScrollButton();
+};
 
-// 获取今天的日期作为随机种子
-const date = new Date();
-const seed = date.getDate();
+function showScrollButton() {
+  var button = document.getElementById("scrollToTopButton");
+  if (
+    document.body.scrollTop > 600 ||
+    document.documentElement.scrollTop > 1000
+  ) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+}
 
-// 根据日期随机选择背景图片
-const randomIndex = seed % bgImages.length;
-headerBg.style.backgroundImage = `url(${bgImages[randomIndex]})`;
-headerBg.classList.add("header-bg-style");
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function getCountOfElements() {
+  var xhr = new XMLHttpRequest();
+  var url = "articalreview.html";
+  xhr.open("GET", url, true);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = xhr.responseText;
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(response, "text/html");
+      var elements = doc.getElementsByClassName("libt");
+      var count = elements.length;
+      document.getElementById("libtresult").textContent =
+        "共有 " + count + " 个具有该类名的元素。";
+    }
+  };
+}
